@@ -1,0 +1,40 @@
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+}
+.logo{
+  padding: 0rem 3rem;
+}
+.menu{
+  display: flex;
+  align-items: center;
+}
+.menu> *{
+  margin-right: 1rem;
+}
+.icon_container {
+  position: relative;
+  display: inline-block;
+}
+
+.icon {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #d3caca;
+  color: #000;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+}

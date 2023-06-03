@@ -1,0 +1,11 @@
+.auth_container {
+  margin-top: 5rem;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-evenly;
+}
+.auth_container h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
