@@ -12,6 +12,9 @@ import { signOut } from "firebase/auth";
 function Nav() {
   const authDispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authentication.isLoggedIn);
+
+  // cart info
+  const cart = useSelector((state) => state.cart.totalQuantity);
   const signoutHandler = async () => {
     try {
       await signOut(auth);
@@ -48,7 +51,7 @@ function Nav() {
                 icon={faCartShopping}
                 size="sm"
               />
-              <span className={styles.number}>1</span>
+              <span className={styles.number}>{cart}</span>
             </Link>
           </h3>
         </div>

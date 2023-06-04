@@ -1,0 +1,21 @@
+.checkout_container {
+  margin: 5rem auto;
+  width: 70%;
+  overflow: hidden;
+}
+
+img {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 5px;
+}
+
+.quantity,
+.remove {
+  display: inline-block;
+  margin: 1rem;
+}
+
+.checkout_header > tr {
+  font-size: 100rem;
+}

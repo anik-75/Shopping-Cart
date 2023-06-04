@@ -3,6 +3,7 @@ import "./App.css";
 import Homepage from "./components/Homepage";
 import Auth from "./components/Auth";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CheckoutPage from "./components/CheckoutPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,6 +14,10 @@ function App() {
     {
       path: "/auth",
       element: <Auth />,
+    },
+    {
+      path: "/checkout",
+      element: <CheckoutPage />,
     },
   ]);
   return (
