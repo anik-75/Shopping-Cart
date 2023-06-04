@@ -3,6 +3,8 @@ import styles from "./Signup.module.css";
 import { Button, Input } from "@chakra-ui/react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthActions } from "../redux/AuthSlice";
+import { useDispatch } from "react-redux";
 
 const initialState = {
   name: "",
@@ -53,6 +55,7 @@ const reducer = (state, action) => {
 };
 
 function Signup() {
+  const authDispatch = useDispatch();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // form submit handler
@@ -66,6 +69,7 @@ function Signup() {
           state.email,
           state.password
         );
+        authDispatch(AuthActions.signUp(user.user.email));
         dispatch({ type: "RESET_STATE" });
         console.log(user);
       }
@@ -76,7 +80,7 @@ function Signup() {
   return (
     <React.Fragment>
       <form onSubmit={submitHandler} className={styles.form_container}>
-        <h2>Don't have an account?</h2>
+        <h2>Don&#39;t have an account?</h2>
         <p>Sign up with your email and password</p>
         <Input
           className={styles.input}
@@ -118,7 +122,12 @@ function Signup() {
             dispatch({ type: "SET_CONFIRM_PASSWORD", payload: e.target.value })
           }
         />
-        <Button size='md' type="submit" colorScheme="blue" className={styles.btn}>
+        <Button
+          size="md"
+          type="submit"
+          colorScheme="blue"
+          className={styles.btn}
+        >
           Signup
         </Button>
       </form>

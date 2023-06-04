@@ -6,6 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import ReduxStore from "./redux/store.jsx";
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider>

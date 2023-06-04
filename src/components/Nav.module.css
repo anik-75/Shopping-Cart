@@ -3,14 +3,17 @@
   justify-content: space-between;
   margin: 2rem;
 }
-.logo{
+.logo {
   padding: 0rem 3rem;
 }
-.menu{
+.logo > *:hover {
+  color: inherit;
+}
+.menu {
   display: flex;
   align-items: center;
 }
-.menu> *{
+.menu > * {
   margin-right: 1rem;
 }
 .icon_container {

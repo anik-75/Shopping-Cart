@@ -49,7 +49,7 @@ function Login() {
         state.password
       );
       authDispatch(AuthActions.login(userCredential.user.email));
-      console.log(userCredential.user.email);
+      dispatch({ type: "RESET_STATE" });
     } catch (err) {
       console.log(err.message);
     }
