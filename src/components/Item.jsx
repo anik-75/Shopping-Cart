@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { cartActions } from "../redux/CartSlice";
+import { cartActions } from "../redux/cartSlice";
 function Item({ id, price, title }) {
   const cartDispatch = useDispatch();
   const addToCartHandler = () => {

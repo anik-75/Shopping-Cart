@@ -4,7 +4,7 @@ import styles from "./Nav.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthActions } from "../redux/AuthSlice";
+import { AuthActions } from "../redux/authSlice";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";

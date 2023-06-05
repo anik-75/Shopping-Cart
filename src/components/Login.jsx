@@ -4,7 +4,7 @@ import { Input, Button } from "@chakra-ui/react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthActions } from "../redux/AuthSlice";
+import { AuthActions } from "../redux/authSlice";
 const initialState = {
   email: "",
   password: "",
@@ -48,7 +48,7 @@ function Login() {
         state.email,
         state.password
       );
-      authDispatch(AuthActions.login(userCredential.user.email));
+      authDispatch(AuthActions.login(userCredential.user.uid));
       dispatch({ type: "RESET_STATE" });
     } catch (err) {
       console.log(err.message);

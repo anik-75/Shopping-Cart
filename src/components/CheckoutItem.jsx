@@ -3,7 +3,7 @@ import { Tr, Td } from "@chakra-ui/react";
 
 import styles from "./CheckoutPage.module.css";
 
-import { cartActions } from "../redux/CartSlice";
+import { cartActions } from "../redux/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,

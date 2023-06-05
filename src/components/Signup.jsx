@@ -3,7 +3,7 @@ import styles from "./Signup.module.css";
 import { Button, Input } from "@chakra-ui/react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { AuthActions } from "../redux/AuthSlice";
+import { AuthActions } from "../redux/authSlice";
 import { useDispatch } from "react-redux";
 
 const initialState = {
@@ -69,7 +69,7 @@ function Signup() {
           state.email,
           state.password
         );
-        authDispatch(AuthActions.signUp(user.user.email));
+        authDispatch(AuthActions.signUp(user.user.uid));
         dispatch({ type: "RESET_STATE" });
         console.log(user);
       }
