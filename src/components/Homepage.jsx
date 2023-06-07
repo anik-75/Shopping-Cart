@@ -2,49 +2,34 @@ import React from "react";
 import styles from "./Homepage.module.css";
 import Item from "./Item";
 import Nav from "./Nav";
+import { useState, useEffect } from "react";
 function Homepage() {
-  const DUMMY_PRODUCTS = [
-    {
-      id: "p1",
-      price: 6,
-      title: "My First Book",
-      description: "The first book I ever wrote",
-    },
-    {
-      id: "p2",
-      price: 5,
-      title: "My Second Book",
-      description: "The second book I ever wrote",
-    },
-    {
-      id: "p2",
-      price: 5,
-      title: "My Second Book",
-      description: "The second book I ever wrote",
-    },
-    {
-      id: "p2",
-      price: 5,
-      title: "My Second Book",
-      description: "The second book I ever wrote",
-    },
-    {
-      id: "p2",
-      price: 5,
-      title: "My Second Book",
-      description: "The second book I ever wrote",
-    },
-  ];
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    let fetchedProducts = async () => {
+      try {
+        let response = await fetch("https://fakestoreapi.com/products/");
+        if (!response.ok) {
+          throw new Error("Could not fetch Products");
+        }
+        const products = await response.json();
+        setProducts(products);
+      } catch (err) {
+        return err;
+      }
+    };
+    fetchedProducts();
+  }, []);
   return (
     <React.Fragment>
       <Nav />
-      {/* 1Row */}
       <div className={styles.collection_container}>
         <div className={styles.accessories_container}>
-          {DUMMY_PRODUCTS.map((product) => {
+          {products.map((product) => {
             return (
               <Item
+                image={product.image}
                 key={product.id}
                 id={product.id}
                 price={product.price}
@@ -53,12 +38,6 @@ function Homepage() {
             );
           })}
         </div>
-
-        {/* 2nd  */}
-        {/* <div className={styles.categories_container}>
-          <div></div>
-          <div></div>
-        </div> */}
       </div>
     </React.Fragment>
   );

@@ -11,7 +11,6 @@ const cartSlice = createSlice({
   reducers: {
     addItemFromDB(state, action) {
       const newItem = action.payload;
-      console.log(newItem);
       const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity += newItem.quantity;
       state.totalPrice += newItem.price;
@@ -22,6 +21,7 @@ const cartSlice = createSlice({
           quantity: newItem.quantity,
           totalPrice: newItem.price,
           name: newItem.name,
+          image: newItem.image,
         });
       } else {
         existingItem.quantity++;
@@ -37,6 +37,7 @@ const cartSlice = createSlice({
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
+          image: newItem.image,
           price: newItem.price,
           quantity: 1,
           totalPrice: newItem.price,

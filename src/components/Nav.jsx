@@ -13,15 +13,14 @@ function Nav() {
   const authDispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.authentication.isLoggedIn);
 
-
   const cart = useSelector((state) => state.cart.totalQuantity);
   const signoutHandler = async () => {
     try {
       await signOut(auth);
       authDispatch(AuthActions.logout());
-
+      localStorage.removeItem("user");
     } catch (err) {
-      console.log(err.message);
+      return err.message;
     }
   };
   return (

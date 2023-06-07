@@ -13,21 +13,18 @@ export const fetchCartData = (uid) => {
 
       const data = await response.json();
 
-      console.log(data);
-
       return data;
     };
 
     try {
       if (uid) {
         const cartData = await fetchData();
-        console.log(cartData);
         cartData.items.map((item) => {
           dispatch(cartActions.addItemFromDB(item));
         });
       }
     } catch (error) {
-      console.log(error.message);
+      return error.message;
     }
   };
 };
@@ -45,7 +42,6 @@ export const sendCartData = (cart, uid) => {
           }),
         }
       );
-      console.log("send", response);
 
       if (!response.ok) {
         throw new Error("Sending cart data failed.");
@@ -57,7 +53,7 @@ export const sendCartData = (cart, uid) => {
         await sendRequest();
       }
     } catch (error) {
-      console.log(error.message);
+      return error.message;
     }
   };
 };

@@ -3,7 +3,7 @@ import { Tr, Td } from "@chakra-ui/react";
 
 import styles from "./CheckoutPage.module.css";
 
-import { cartActions } from "../redux/cartSlice";
+import { cartActions } from "../../redux/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -11,7 +11,7 @@ import {
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-function CheckoutItem({ id, title, price, quantity }) {
+function CheckoutItem({ id, title, price, quantity, image }) {
   const cartDispatch = useDispatch();
   const removeItemHandler = () => {
     cartDispatch(cartActions.removeItemFromCart(id));
@@ -23,6 +23,7 @@ function CheckoutItem({ id, title, price, quantity }) {
         id,
         title,
         price,
+        image,
       })
     );
   };
@@ -33,10 +34,7 @@ function CheckoutItem({ id, title, price, quantity }) {
     <React.Fragment>
       <Tr>
         <Td>
-          <img
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            alt="Green double couch with wooden legs"
-          />
+          <img src={image} alt={title} />
         </Td>
         <Td>{title}</Td>
         <Td>

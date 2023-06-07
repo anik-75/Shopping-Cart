@@ -2,8 +2,7 @@ import React from "react";
 import styles from "./Auth.module.css";
 import Login from "./Login";
 import Signup from "./Signup";
-import Nav from "./Nav";
-import { Outlet } from "react-router-dom";
+import Nav from "../Nav";
 function Auth() {
   return (
     <React.Fragment>
@@ -12,7 +11,6 @@ function Auth() {
         <Login />
         <Signup />
       </div>
-      <Outlet/>
     </React.Fragment>
   );
 }

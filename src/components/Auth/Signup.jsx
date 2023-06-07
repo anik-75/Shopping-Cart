@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
 import styles from "./Signup.module.css";
 import { Button, Input } from "@chakra-ui/react";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { AuthActions } from "../redux/authSlice";
+import { AuthActions } from "../../redux/authSlice";
 import { useDispatch } from "react-redux";
 
 const initialState = {
@@ -47,7 +47,6 @@ const reducer = (state, action) => {
         }`,
       };
     case "RESET_STATE":
-      console.log("reset");
       return initialState;
     default:
       return state;
@@ -71,10 +70,9 @@ function Signup() {
         );
         authDispatch(AuthActions.signUp(user.user.uid));
         dispatch({ type: "RESET_STATE" });
-        console.log(user);
       }
     } catch (err) {
-      console.log(err.message);
+      return err.message;
     }
   };
   return (

@@ -17,5 +17,13 @@ img {
 }
 
 .checkout_header > tr {
-  font-size: 100rem;
+  background-color: #80808045;
+}
+.total {
+  font-size: 1.5rem;
+  text-align: end;
+}
+.emptyCart {
+  margin: 5rem 30rem;
+  height: 60vh;
 }

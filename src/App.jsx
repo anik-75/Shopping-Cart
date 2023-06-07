@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import Homepage from "./components/Homepage";
-import Auth from "./components/Auth";
+import Auth from "./components/Auth/Auth";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CheckoutPage from "./components/CheckoutPage";
-import PrivateRoute from "./components/PrivateRoute";
+import CheckoutPage from "./components/Checkout/CheckoutPage";
+import PrivateRoute from "./components/Auth/PrivateRoute";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,26 +18,22 @@ function App() {
   const authDispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const uid = useSelector((state) => state.authentication.user);
-  console.log(uid);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.email);
         authDispatch(AuthActions.login(user?.uid));
+        // fetchcartData
         authDispatch(fetchCartData(uid));
+        localStorage.setItem("user", user?.uid);
       } else {
         authDispatch(AuthActions.logout());
         authDispatch(cartActions.emptyTheCart());
+        localStorage.removeItem("user");
       }
     });
 
     return () => unsubscribe();
   }, [authDispatch, uid]);
-
-  // //fetch cart Data
-  // useEffect(() => {
-  //   authDispatch(fetchCartData(uid));
-  // }, [authDispatch, uid]);
 
   // sent cart Data
   useEffect(() => {
@@ -47,7 +43,6 @@ function App() {
     }
 
     if (cart.changed) {
-      console.log(uid);
       authDispatch(sendCartData(cart, uid));
     }
   }, [cart, authDispatch, uid]);
@@ -65,7 +60,7 @@ function App() {
     {
       path: "/checkout",
       element: <PrivateRoute />,
-      children: [{ path: "/checkout/", element: <CheckoutPage /> }],
+      children: [{ path: "/checkout", element: <CheckoutPage /> }],
     },
   ]);
   return (

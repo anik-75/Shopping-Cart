@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
 import styles from "./Login.module.css";
 import { Input, Button } from "@chakra-ui/react";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
-import { AuthActions } from "../redux/authSlice";
+import { useDispatch } from "react-redux";
+import { AuthActions } from "../../redux/authSlice";
 const initialState = {
   email: "",
   password: "",
@@ -28,7 +28,6 @@ const reducer = (state, action) => {
         }`,
       };
     case "RESET_STATE":
-      console.log("reset");
       return initialState;
     default:
       return state;
@@ -37,8 +36,6 @@ const reducer = (state, action) => {
 function Login() {
   const authDispatch = useDispatch();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const user = useSelector((state) => state.authentication.user);
-  console.log(user);
 
   const submitHandler = async (event) => {
     try {
@@ -49,9 +46,10 @@ function Login() {
         state.password
       );
       authDispatch(AuthActions.login(userCredential.user.uid));
+      localStorage.setItem("user", userCredential.user.uid);
       dispatch({ type: "RESET_STATE" });
     } catch (err) {
-      console.log(err.message);
+      return err.message;
     }
   };
   return (
