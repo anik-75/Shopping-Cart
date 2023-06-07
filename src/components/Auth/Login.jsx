@@ -6,8 +6,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { AuthActions } from "../../redux/authSlice";
 const initialState = {
-  email: "",
-  password: "",
+  email: "test@test.com",
+  password: "123456789",
   valid: false,
 };
 
